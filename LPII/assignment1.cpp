@@ -70,16 +70,22 @@ int main() {
     }
 
     string msg;
-    cout << "Enter message: "; cin.ignore(); getline(cin, msg);
+    cout << "Enter message: ";
+    cin.ignore(); 
+    getline(cin, msg);
     
     int algorithm, start_node;
-    cout << "Algorithm (1 for BFS, 2 for DFS): "; cin >> algorithm;
-    cout << "Starting node: "; cin >> start_node;
+    cout << "Algorithm (1 for BFS, 2 for DFS): "; 
+    cin >> algorithm;
+    cout << "Starting node: "; 
+    cin >> start_node;
 
     cout << "\n>> Initial Broadcast Starting..." << endl;
     vector<int> visited(n, 0);
     if (algorithm == 1) {
-        queue<int> q; q.push(start_node); visited[start_node] = 1;
+        queue<int> q; 
+        q.push(start_node); 
+        visited[start_node] = 1;
         cout << "Message reached node " << start_node << endl;
         bfs_to_broadcast(q, neighbours, visited, msg);
     } else {
@@ -88,7 +94,9 @@ int main() {
     report_status(n, visited);
 
     int del_count;
-    cout << "How many edges to delete? "; cin >> del_count;
+    cout << "How many edges to delete? "; 
+    cin >> del_count;
+
     for (int i = 0; i < del_count; i++) {
         int u, v;
         cout << "Enter edge to delete (u v): "; cin >> u >> v;
@@ -97,8 +105,11 @@ int main() {
 
     cout << "\n>> Second Broadcast After Edge Deletion..." << endl;
     fill(visited.begin(), visited.end(), 0); 
+
     if (algorithm == 1) {
-        queue<int> q; q.push(start_node); visited[start_node] = 1;
+        queue<int> q; 
+        q.push(start_node); 
+        visited[start_node] = 1;
         cout << "Message reached node " << start_node << endl;
         bfs_to_broadcast(q, neighbours, visited, msg);
     } else {
