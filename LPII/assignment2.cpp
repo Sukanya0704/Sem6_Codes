@@ -22,7 +22,7 @@ int calculateHeuristic(const vector<int>& board, const vector<int>& goal) {
     for (int i = 0; i < 9; i++) {
         goalPos[goal[i]] = i;
     }
-
+    
     for (int i = 0; i < 9; i++) {
         int tile = board[i];
         if (tile != 0) { 
@@ -120,7 +120,7 @@ void solve(const vector<int>& start, const vector<int>& goal){
                 swap(next_board[current.blank_idx], next_board[next_blank]);
 
                 int g_new = current.g + 1;
-                if (!closedList.count(next_board) || closedList[next_board] > g_new) {
+                if (closedList.find(next_board) == closedList.end() || closedList[next_board] > g_new) {
                     int h_new = calculateHeuristic(next_board, goal);
                     vector<vector<int>> next_history = current.history;
                     next_history.push_back(next_board);
