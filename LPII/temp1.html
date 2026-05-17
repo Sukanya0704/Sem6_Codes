@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>City Hospital</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0px;
+                background-color: whitesmoke;
+            }
+            header{
+                color: white;
+                background-color: teal;
+                text-align: center;
+                padding: 15px;
+            }
+            h2{
+                color: teal ;
+            }
+            header h2{
+                color: white;
+            }
+            .content{
+                padding:20px
+            }
+            .section{
+                padding: 15px;
+                background-color: white;
+                margin-bottom: 15px;
+                border: 1px solid lightgray;
+            }
+            .chat-button{
+                bottom: 20px;
+                right: 20px;
+                color: white;
+                background-color: teal;
+                border: 0px;
+                position: fixed;
+                margin: 10px;
+                padding: 10px;
+            }
+            .chat-messages{
+                display: none;
+                position: fixed;
+                bottom: 70px;
+                right:20px;
+                width: 260px;
+                background: white;
+                border: 1px solid gray;
+                padding: 10px;
+            }
+            .messages{
+                height: 150px;
+                margin-bottom: 15px;
+                padding: 5px;
+                overflow-y: auto;
+                border: 1px solid lightgray;
+            }
+            .user{
+                text-align: right;
+                color: blue;
+            }
+            .bot{
+                text-align: left;
+                color: green;
+            }
+            input{
+                width: 70%;
+                padding: 5px;
+            }
+            button{
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h2>
+                City Hospital Pune
+            </h2>
+            <p>
+                We care for your health!
+            </p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>About us</h2>
+                <p id="title">
+                    We provide all the facilities and we have one of the best doctors in pune!
+                </p>
+                <p>
+                    We are well known for our hospitality and the service which we provide!
+                </p>
+            </div>
+            <div class="section">
+                <h2>Our Services</h2>
+                <ul>
+                    <li>General Checkup</li>
+                    <li>Specialist Doctors</li>
+                    <li>24/7 Ambulance Support</li>
+                    <li>Emergency Supports</li>
+                    <li>Lab Tests</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>
+                    Doctors Available
+                </h2>
+                <p>Dr.Gupta - Cardiologist</p>
+                <p>Dr.Joshi - Orthopedic Surgeon</p>
+                <p>Dr.Manore - General Physician</p>
+            </div>
+            <div class="section">
+                <h2>Contact Us</h2>
+                <p>Phone: 1234567890</p>
+                <p>Email: cityhospital@gmail.com</p>
+                <p>Address: Pune, Maharashtra</p>
+            <div>
+            
+            <button class="chat-button" onclick="toggleChat()">Chat</button>
+            <div class="chat-messages" id="chat-box">
+                <h2>Help Desk</h2>
+                <div class="messages" id="chats"></div>
+                <input type="text" id="msg">
+                <button onclick="send()">Send</button>
+            </div>
+        </div>
+
+        <script>
+            function toggleChat(){
+                let box = document.getElementById("chat-box");
+
+                if(box.style.display === "block"){
+                    box.style.display = "none"
+                }else{
+                    box.style.display = "block"
+                }
+            }
+
+            function send(){
+                let input = document.getElementById("msg");
+                let text = input.value.toLowerCase();
+                let chat = document.getElementById("chats");
+                if(text === "")
+                    return;
+                chat.innerHTML += "<p class='user'>" + text + "</p>";
+
+                let reply = ""
+                
+                if(text.includes("appointment"))
+                    reply = "Appointments are available from 9AM to 5PM.";
+                else if(text.includes("hello"))
+                    reply = "Hello! How can I help you?";
+                else
+                    reply = "Sorry, I didn't understand.";
+
+                chat.innerHTML += "<p class='bot'>" + reply + "</p>";
+                input.value=""
+
+                chat.scrollHeight = chat.scrollHeight;
+            }
+        </script>
+    </body>
+</html>

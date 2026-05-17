@@ -48,7 +48,7 @@ void report_status(int n, const vector<int>& visited) {
     if (count < n) {
         cout << "Network status: DISTURBED (Some nodes did not receive the message)" << endl;
         cout << "Missing nodes: ";
-        for (int i = 0; i < n; i++) if (visited[i] == 0) cout << i << " ";
+        for (int i = 0; i < n; i++) if  (visited[i] == 0) cout << i << " ";
         cout << endl;
     } else {
         cout << "Network status: HEALTHY (All nodes reached)" << endl;

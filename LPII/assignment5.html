@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City Hospital</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: whitesmoke;
+        }
+
+        header {
+            background: teal;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        h2 {
+            color: teal;
+        }
+
+        .section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid lightgray;
+        }
+
+        .chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: teal;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .chatbox {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 260px;
+            background: white;
+            border: 1px solid gray;
+            display: none;
+            padding: 10px;
+        }
+
+        .messages {
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid lightgray;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .user {
+            text-align: right;
+            color: blue;
+        }
+
+        .bot {
+            text-align: left;
+            color: green;
+        }
+        
+
+        input {
+            width: 70%;
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>City Hospital</h1>
+    <p>We Care for Your Health</p>
+</header>
+
+<div class="content">
+
+    <div class="section">
+
+        <h2>About Us</h2>
+
+        <p>
+            City Hospital provides quality healthcare services with experienced doctors
+            and modern medical facilities.
+        </p>
+
+        <p>
+            Our mission is to deliver safe, affordable, and trusted healthcare
+            for all patients.
+        </p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Our Services</h2>
+
+        <ul>
+            <li>General Checkup</li>
+            <li>Emergency Services</li>
+            <li>Specialist Doctors</li>
+            <li>Laboratory Tests</li>
+            <li>24/7 Ambulance Service</li>
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Doctors Available</h2>
+
+        <p>Dr. Sharma - Cardiologist</p>
+        <p>Dr. Patel - Orthopedic Specialist</p>
+        <p>Dr. Mehta - General Physician</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Contact Us</h2>
+
+        <p>Phone: 1234567890</p>
+        <p>Email: cityhospital@gmail.com</p>
+        <p>Address: Pune, Maharashtra</p>
+
+    </div>
+
+</div>
+
+<button class="chat-btn" onclick="toggleChat()">Chat</button>
+
+<div class="chatbox" id="chatbox">
+
+    <h3>Help Desk</h3>
+
+    <div class="messages" id="chat"></div>
+
+    <input type="text" id="msg">
+    <button onclick="send()">Send</button>
+
+</div>
+
+<script>
+
+function toggleChat() {
+
+    let box = document.getElementById("chatbox");
+
+    if(box.style.display === "block")
+        box.style.display = "none";
+
+    else
+        box.style.display = "block";
+}
+
+function send() {
+
+    let input = document.getElementById("msg");
+
+    let text = input.value.toLowerCase();
+
+    let chat = document.getElementById("chat");
+
+    if(text === "")
+        return;
+
+    chat.innerHTML += "<p class='user'>" + text + "</p>";
+
+    let reply = "";
+
+    if(text.includes("appointment"))
+        reply = "Appointments are available from 9AM to 5PM.";
+
+    else if(text.includes("doctor"))
+        reply = "Specialist doctors are available.";
+
+    else if(text.includes("emergency"))
+        reply = "Emergency services are available 24/7.";
+
+    else if(text.includes("hello"))
+        reply = "Hello! How can I help you?";
+
+    else
+        reply = "Sorry, I didn't understand.";
+
+    chat.innerHTML += "<p class='bot'>" + reply + "</p>";
+
+    input.value = "";
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>

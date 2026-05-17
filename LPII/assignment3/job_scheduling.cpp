@@ -51,4 +51,4 @@ int main(){
     cout<<"Total Profit Earned :"<<total_profit<<endl;
 
     return 0;
-}
+}  
